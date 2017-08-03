@@ -1,0 +1,10 @@
+﻿{
+  "/api": {
+    "target": "http://localhost:2199",
+    "secure": false
+  },
+  "/application": {
+    "target": "http://localhost:2199",
+    "secure": false
+  }
+}
