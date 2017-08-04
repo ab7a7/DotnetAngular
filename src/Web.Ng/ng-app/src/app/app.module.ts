@@ -11,7 +11,6 @@ import { MOneModule } from "./m-one/m-one.module";
 import { PeopleModule } from "./people/people.module";
 import { CrisesModule } from "./crises/crises.module";
 import { MessagesModule } from "./messages/messages.module";
-import { AdminModule } from "./admin/admin.module";
 import { LoginModule } from "app/login/login.module";
 import { CanDeactivateGuard } from "./guards/deactivate-guard";
 import { DialogService } from "app/services/dialog-service/dialog.service";
@@ -29,7 +28,6 @@ import { DialogService } from "app/services/dialog-service/dialog.service";
         PeopleModule,
         CrisesModule,
         MessagesModule,
-        AdminModule,
         LoginModule,
         AppRoutingModule
     ],
