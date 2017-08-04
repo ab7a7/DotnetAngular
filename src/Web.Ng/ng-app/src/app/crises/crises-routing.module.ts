@@ -6,6 +6,7 @@ import { CrisesDetailComponent } from "./crises-detail/crises-detail.component";
 import { CrisesComponent } from "./crises/crises.component";
 import { CrisesHomeComponent } from "./crises-home/crises-home.component";
 import { CanDeactivateGuard } from "app/guards/deactivate-guard";
+import { CrisesDetailResolver } from "./resolvers/crises-detail-resolver.service";
 
 const heroesRoutes: Routes = [
     {
@@ -18,7 +19,10 @@ const heroesRoutes: Routes = [
                     {
                         path: ":id",
                         canDeactivate: [CanDeactivateGuard],
-                        component: CrisesDetailComponent
+                        component: CrisesDetailComponent,
+                        resolve: {
+                            crises: CrisesDetailResolver
+                        }
                     },
                     {
                         path: "",
@@ -36,6 +40,7 @@ const heroesRoutes: Routes = [
     ],
     exports: [
         RouterModule
-    ]
+    ],
+    providers: [CrisesDetailResolver]
 })
 export class CrisesRoutingModule { }
