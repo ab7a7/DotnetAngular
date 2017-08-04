@@ -18,7 +18,8 @@ export class PeopleDetailComponent implements OnInit {
     ) { }
 
     goBack() {
-        this.router.navigate(["/list-people"]);
+        const id = this.person ? this.person.id : null;
+        this.router.navigate(["/list-people", {id: id}]);
     }
 
     ngOnInit() {
