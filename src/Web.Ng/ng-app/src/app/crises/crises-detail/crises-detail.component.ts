@@ -1,9 +1,11 @@
 import { Component, OnInit, HostBinding } from "@angular/core";
-import { Router, ActivatedRoute, ParamMap } from "@angular/router";
-import {slideInDownAnimation} from "app/animations/animations";
+import { Router, ActivatedRoute, ParamMap, CanDeactivate } from "@angular/router";
+import { slideInDownAnimation } from "app/animations/animations";
 import "rxjs/add/operator/switchMap";
 import { Crisis } from "app/models";
 import { CrisesService } from "app/services/crises/crises.service";
+import { DialogService } from "app/services/dialog-service/dialog.service";
+import { CanComponentDeactivate } from "app/contracts/CanComponentDeactivate";
 
 @Component({
     selector: "app-crises-detail",
@@ -17,21 +19,41 @@ export class CrisesDetailComponent implements OnInit {
     @HostBinding("style.position") position: "absolute";
 
     crisis: Crisis;
+    editName: string;
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private crisisService: CrisesService
+        private crisisService: CrisesService,
+        private dialogService: DialogService
     ) { }
+
+    CanDeactivate(): Promise<boolean> | boolean {
+        // Allow synchronous navigation (`true`) if no crisis or the crisis is unchanged
+        if (!this.crisis || this.crisis.name === this.editName) {
+            return true;
+        }
+        // Otherwise ask the user with the dialog service and return its
+        // promise which resolves to true or false when the user decides
+        return this.dialogService.confirm("Discard changes?");
+    }
 
     goBack() {
         const id = this.crisis ? this.crisis.id : null;
-        this.router.navigate(["../"], {relativeTo: this.route});
+        this.router.navigate(["../"], { relativeTo: this.route });
     }
 
     ngOnInit() {
-         this.route.paramMap
-             .switchMap((params: ParamMap) => this.crisisService.getCrisis(+params.get("id")))
-             .subscribe((person: Crisis) => this.crisis = person);
+        this.route.paramMap
+            .switchMap((params: ParamMap) => this.crisisService.getCrisis(+params.get("id")))
+            .subscribe((person: Crisis) => {
+                this.crisis = person;
+                this.editName = this.crisis.name;
+            });
+    }
+
+    save() {
+        this.crisis.name = this.editName;
+        this.goBack();
     }
 
 }

@@ -13,6 +13,8 @@ import { CrisesModule } from "./crises/crises.module";
 import { MessagesModule } from "./messages/messages.module";
 import { AdminModule } from "./admin/admin.module";
 import { LoginModule } from "app/login/login.module";
+import { CanDeactivateGuard } from "./guards/deactivate-guard";
+import { DialogService } from "app/services/dialog-service/dialog.service";
 
 @NgModule({
     declarations: [
@@ -31,7 +33,7 @@ import { LoginModule } from "app/login/login.module";
         LoginModule,
         AppRoutingModule
     ],
-    providers: [],
+    providers: [CanDeactivateGuard, DialogService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

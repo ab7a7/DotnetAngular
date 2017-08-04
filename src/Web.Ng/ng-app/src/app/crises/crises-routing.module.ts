@@ -5,6 +5,7 @@ import { CrisesListComponent } from "./crises-list/crises-list.component";
 import { CrisesDetailComponent } from "./crises-detail/crises-detail.component";
 import { CrisesComponent } from "./crises/crises.component";
 import { CrisesHomeComponent } from "./crises-home/crises-home.component";
+import { CanDeactivateGuard } from "app/guards/deactivate-guard";
 
 const heroesRoutes: Routes = [
     {
@@ -16,6 +17,7 @@ const heroesRoutes: Routes = [
                 children: [
                     {
                         path: ":id",
+                        canDeactivate: [CanDeactivateGuard],
                         component: CrisesDetailComponent
                     },
                     {
