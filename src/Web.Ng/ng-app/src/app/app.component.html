@@ -1,7 +1,10 @@
 ﻿<h1>Angular Routing</h1>
 <nav>
+  <a routerLink="/crises" routerLinkActive="active">Crisis Center</a>
   <a routerLink="/list-people" routerLinkActive="active">People</a>
   <a routerLink="/one" routerLinkActive="active">First</a>
   <a routerLink="/two" routerLinkActive="active">Second</a>
+  <a [routerLink]="[{ outlets: { popup: ['compose'] } }]">Contact</a>
 </nav>
 <router-outlet></router-outlet>
+<router-outlet name="popup"></router-outlet>

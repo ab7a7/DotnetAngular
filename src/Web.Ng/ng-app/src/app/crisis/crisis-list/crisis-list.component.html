@@ -1,6 +1,0 @@
-<h2>My People</h2>
-<ul class="people">
-  <li *ngFor="let person of people | async" [class.selected]="isSelected(person)" (click)="onSelect(person)">
-    <span class="badge">{{person.id}}</span> {{person.name}}
-  </li>
-</ul>
