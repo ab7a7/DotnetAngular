@@ -3,28 +3,22 @@ import { NgModule } from "@angular/core";
 import { HttpModule } from "@angular/http";
 
 import { AppComponent } from "./app.component";
-import { CompOneComponent } from "./comp-one/comp-one.component";
-import { CompTwoComponent } from "./comp-two/comp-two.component";
 import { Routes, RouterModule } from "@angular/router";
 import { NotFoundComponent } from "./not-found/not-found.component";
-
-const appRoutes: Routes = [
-    {path: "", component: AppComponent},
-    { path: "one", component: CompOneComponent },
-    { path: "two", component: CompTwoComponent },
-    { path: "**", component: NotFoundComponent }
-]
+import { AppRoutingModule } from "./app-routing.module";
+import { MOneModule } from "./m-one/m-one.module";
+import {PeopleModule} from "./people/people.module";
 @NgModule({
     declarations: [
         AppComponent,
-        CompOneComponent,
-        CompTwoComponent,
         NotFoundComponent
     ],
     imports: [
         BrowserModule,
         HttpModule,
-        RouterModule.forRoot(appRoutes, { enableTracing: true })
+        MOneModule,
+        PeopleModule,
+        AppRoutingModule
     ],
     providers: [],
     bootstrap: [AppComponent]

@@ -2,14 +2,16 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
 import {AppComponent} from "./app.component";
-import { ModuleOComponent } from "app/m-one/module-o/module-o.component";
+import { NotFoundComponent } from "./not-found/not-found.component";
+
 const appRoutes: Routes = [
-    { path: "", component: AppComponent, pathMatch: "full" }
-];
+    {path: "", component: AppComponent},
+    { path: "**", component: NotFoundComponent }
+]
 
 @NgModule({
     imports: [
-        RouterModule.forRoot(appRoutes)
+        RouterModule.forRoot(appRoutes, {enableTracing: true})
     ],
     exports: [
         RouterModule

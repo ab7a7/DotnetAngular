@@ -1,5 +1,7 @@
 ﻿import { Component, OnInit } from "@angular/core";
 import { Http } from "@angular/http";
+import { PeopleService } from "./services/people/people.service";
+import { Person } from "./Models/Person";
 
 @Component({
   selector: "app-root",
@@ -10,10 +12,7 @@ export class AppComponent implements OnInit {
    title = "app";
     apiValues: string[];
 
-    constructor(private httpService: Http) { }
+    constructor() { }
 
-    ngOnInit() {
-        // this.httpService.get("api/values")
-        //     .subscribe(res => this.apiValues = res.json() as string[]);
-    }
+    ngOnInit() { }
 }
