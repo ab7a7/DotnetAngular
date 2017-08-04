@@ -25,13 +25,13 @@ export class CrisesDetailComponent implements OnInit {
 
     goBack() {
         const id = this.crisis ? this.crisis.id : null;
-        this.router.navigate(["../", {id: id}], {relativeTo: this.route});
+        this.router.navigate(["../"], {relativeTo: this.route});
     }
 
     ngOnInit() {
-        // this.route.paramMap
-        //     .switchMap((params: ParamMap) => this.crisisService.getPerson(+params.get("id")))
-        //     .subscribe((person: Crisis) => this.crisis = person);
+         this.route.paramMap
+             .switchMap((params: ParamMap) => this.crisisService.getCrisis(+params.get("id")))
+             .subscribe((person: Crisis) => this.crisis = person);
     }
 
 }

@@ -11,7 +11,7 @@ import { Crisis } from "app/models";
     styleUrls: ["./crises-list.component.scss"]
 })
 export class CrisesListComponent implements OnInit {
-    crisis: Observable<Crisis[]>;
+    crises: Observable<Crisis[]>;
     private selectedId: number;
 
     constructor(
@@ -21,19 +21,19 @@ export class CrisesListComponent implements OnInit {
     ) { }
 
     getCrisis() {
-        // this.crisis = this.route.paramMap.switchMap((params: ParamMap) => {
-        //     this.selectedId = +params.get("id");
-        //     return this.crisisService.getCrisis();
-        // });
+         this.crises = this.route.paramMap.switchMap((params: ParamMap) => {
+             return this.crisisService.getCrises();
+         });
     }
 
-    isSelected(crises: Crisis) { return crises.id === this.selectedId; }
+    isSelected(crisis: Crisis) { return crisis.id === this.selectedId; }
 
     ngOnInit() {
         this.getCrisis();
     }
 
     onSelect(crisis: Crisis) {
+        this.selectedId = crisis.id;
         this.router.navigate([crisis.id], {relativeTo: this.route});
     }
 
