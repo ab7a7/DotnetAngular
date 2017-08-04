@@ -19,9 +19,10 @@
 </ul>
 
 
-<h2>Here are some links to help you start: </h2>
-<h1>Application says what?</h1>
-<ul *ngFor="let value of apiValues">
-  <li>{{value}}</li>
-</ul>
+<h1>Angular Router</h1>
+  <nav>
+    <a routerLink="/one" routerLinkActive="active">First</a>
+    <a routerLink="/two" routerLinkActive="active">Second</a>
+  </nav>
+  <router-outlet></router-outlet>
 
